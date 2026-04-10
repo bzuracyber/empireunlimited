@@ -169,16 +169,19 @@ p:last-child { margin-bottom: 0; }
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: .75rem 1.5rem;
+  padding: .5rem 1.5rem;
   max-width: 1280px;
   margin: 0 auto;
 }
 
 .header-logo img {
-  height: 48px;
+  height: 80px;
   width: auto;
+  max-width: 260px;
   filter: brightness(0) invert(1);
+  transition: opacity var(--transition);
 }
+.header-logo:hover img { opacity: .85; }
 
 .header-nav {
   display: flex;
@@ -237,6 +240,7 @@ p:last-child { margin-bottom: 0; }
 
 /* Mobile nav */
 @media (max-width: 900px) {
+  .header-logo img { height: 64px; max-width: 200px; }
   .nav-toggle { display: block; }
 
   .header-nav {
@@ -260,7 +264,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 @media (max-width: 480px) {
-  .header-logo img { height: 38px; }
+  .header-logo img { height: 56px; max-width: 170px; }
   .header-ctas { gap: .4rem; }
 }
 
@@ -1109,6 +1113,241 @@ select.form-control { background-image: url("data:image/svg+xml,%3Csvg xmlns='ht
 .form-message { padding: .6rem 1rem; border-radius: var(--radius); font-size: .875rem; }
 .form-message.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
 .form-message.error   { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+/* ---------- Hero entry (page load) ---------- */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(36px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.hero-eyebrow {
+  opacity: 0;
+  animation: heroFadeUp .7s ease .15s forwards;
+}
+.hero h1 {
+  opacity: 0;
+  animation: heroFadeUp .75s ease .35s forwards;
+}
+.hero-sub {
+  opacity: 0;
+  animation: heroFadeUp .7s ease .55s forwards;
+}
+.hero-btns {
+  opacity: 0;
+  animation: heroFadeUp .7s ease .75s forwards;
+}
+/* Page hero (shorter) uses same treatment */
+.page-hero .page-hero-content h1 {
+  opacity: 0;
+  animation: heroFadeUp .65s ease .1s forwards;
+}
+.page-hero .page-hero-content p {
+  opacity: 0;
+  animation: heroFadeUp .65s ease .3s forwards;
+}
+
+/* ---------- Scroll-reveal base ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(38px);
+  transition: opacity .65s cubic-bezier(.22,.61,.36,1),
+              transform .65s cubic-bezier(.22,.61,.36,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Stagger delay classes (set by JS on siblings) */
+.reveal.d1  { transition-delay: .08s; }
+.reveal.d2  { transition-delay: .16s; }
+.reveal.d3  { transition-delay: .24s; }
+.reveal.d4  { transition-delay: .32s; }
+.reveal.d5  { transition-delay: .40s; }
+.reveal.d6  { transition-delay: .48s; }
+
+/* ---------- Card hover enhancements ---------- */
+.feature-card {
+  transition: transform .3s cubic-bezier(.22,.61,.36,1),
+              box-shadow .3s ease,
+              border-color .3s ease;
+  will-change: transform;
+}
+.feature-card:hover {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: 0 12px 36px rgba(0,0,0,.13);
+}
+
+.apt-card {
+  transition: transform .3s cubic-bezier(.22,.61,.36,1),
+              box-shadow .3s ease;
+  will-change: transform;
+}
+.apt-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 36px rgba(0,0,0,.14);
+}
+
+.home-feature-card {
+  transition: transform .3s cubic-bezier(.22,.61,.36,1),
+              box-shadow .3s ease,
+              border-color .3s ease;
+}
+.home-feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--gold);
+}
+
+.prev-card {
+  transition: transform .3s ease, opacity .3s ease, box-shadow .3s ease;
+}
+.prev-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ---------- Button hover pulse ---------- */
+.btn {
+  transition: all .25s cubic-bezier(.22,.61,.36,1);
+}
+.btn:active {
+  transform: scale(.97) translateY(1px);
+}
+
+/* ---------- Gallery image hover zoom ---------- */
+.apt-gallery {
+  overflow: hidden;
+}
+.apt-gallery img {
+  transition: transform .55s cubic-bezier(.22,.61,.36,1),
+              opacity .3s ease;
+}
+.apt-gallery:hover img.active {
+  transform: scale(1.045);
+}
+
+/* ---------- Parallax hero ---------- */
+/* JS writes transform directly; no extra CSS needed beyond preventing overflow */
+.hero { overflow: hidden; }
+
+/* ---------- Photo feature grid ---------- */
+.photo-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+@media (max-width: 860px) {
+  .photo-feature-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .photo-feature-grid { grid-template-columns: 1fr; }
+}
+
+.photo-feature-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  aspect-ratio: 4/3;
+  cursor: default;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .35s ease, transform .35s cubic-bezier(.22,.61,.36,1);
+}
+.photo-feature-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px) scale(1.01);
+}
+.photo-feature-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .6s cubic-bezier(.22,.61,.36,1);
+}
+.photo-feature-card:hover img {
+  transform: scale(1.08);
+}
+.photo-feature-label {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 18, 40, .82) 0%,
+    rgba(10, 18, 40, .3)  50%,
+    transparent 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  padding: 1.1rem 1.2rem;
+  pointer-events: none;
+  transition: background .35s ease;
+}
+.photo-feature-card:hover .photo-feature-label {
+  background: linear-gradient(
+    to top,
+    rgba(10, 18, 40, .9) 0%,
+    rgba(10, 18, 40, .4) 55%,
+    transparent 100%
+  );
+}
+.photo-feature-label span {
+  color: var(--white);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-shadow: 0 1px 4px rgba(0,0,0,.5);
+  transform: translateY(4px);
+  transition: transform .35s ease;
+}
+.photo-feature-card:hover .photo-feature-label span {
+  transform: translateY(0);
+}
+/* Gold accent line that appears on hover */
+.photo-feature-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s cubic-bezier(.22,.61,.36,1);
+}
+.photo-feature-card:hover::after {
+  transform: scaleX(1);
+}
+
+/* ---------- Count-up numbers ---------- */
+.stat-num {
+  display: block; /* already set above — keep transition-friendly */
+}
+
+/* ---------- Lot card hover ---------- */
+.lot-card {
+  transition: box-shadow .3s ease, transform .3s cubic-bezier(.22,.61,.36,1);
+  will-change: transform;
+}
+.lot-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+/* ---------- Info banner link ---------- */
+.info-banner a {
+  transition: opacity .2s;
+}
+.info-banner a:hover { opacity: .75; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 768px) {

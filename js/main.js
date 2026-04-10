@@ -16,7 +16,6 @@
     toggle.textContent = open ? '✕' : '☰';
   });
 
-  // Close on outside click
   document.addEventListener('click', function (e) {
     if (!toggle.contains(e.target) && !nav.contains(e.target)) {
       nav.classList.remove('open');
@@ -25,7 +24,6 @@
     }
   });
 
-  // Close on nav link click (mobile)
   nav.querySelectorAll('a').forEach(function (a) {
     a.addEventListener('click', function () {
       nav.classList.remove('open');
@@ -48,10 +46,10 @@
 
 /* ---------- Photo Gallery ---------- */
 function initGallery(galleryEl) {
-  const imgs  = galleryEl.querySelectorAll('img');
-  const dots  = galleryEl.querySelectorAll('.gallery-dot');
-  const prev  = galleryEl.querySelector('.gallery-btn.prev');
-  const next  = galleryEl.querySelector('.gallery-btn.next');
+  const imgs = galleryEl.querySelectorAll('img');
+  const dots = galleryEl.querySelectorAll('.gallery-dot');
+  const prev = galleryEl.querySelector('.gallery-btn.prev');
+  const next = galleryEl.querySelector('.gallery-btn.next');
   if (imgs.length <= 1) {
     if (prev) prev.style.display = 'none';
     if (next) next.style.display = 'none';
@@ -75,7 +73,6 @@ function initGallery(galleryEl) {
     dot.addEventListener('click', function () { show(i); });
   });
 
-  // Touch/swipe
   let startX = 0;
   galleryEl.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
   galleryEl.addEventListener('touchend', function (e) {
@@ -83,7 +80,6 @@ function initGallery(galleryEl) {
     if (Math.abs(diff) > 40) show(diff > 0 ? current + 1 : current - 1);
   }, { passive: true });
 
-  // Auto-advance (only for featured gallery)
   if (galleryEl.classList.contains('apt-gallery-featured')) {
     setInterval(function () { show(current + 1); }, 5000);
   }
@@ -144,21 +140,174 @@ document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     const target = document.querySelector(a.getAttribute('href'));
     if (!target) return;
     e.preventDefault();
-    const offset = 80; // header height
+    const offset = 90;
     const top = target.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top: top, behavior: 'smooth' });
   });
 });
 
-/* ---------- Lazy-load images (fallback for older browsers) ---------- */
-if ('IntersectionObserver' in window) {
-  const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+/* ---------- Scroll-reveal with staggered cards ---------- */
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+
+  // Selectors that get the reveal treatment
+  const REVEAL_SELECTORS = [
+    '.section-heading',
+    '.section-subheading',
+    '.gold-rule',
+    '.feature-card',
+    '.photo-feature-card',
+    '.apt-card',
+    '.apt-card-featured',
+    '.lot-card',
+    '.home-feature-card',
+    '.prev-card',
+    '.floor-plan-card',
+    '.realtor-info',
+    '.contact-sidebar',
+    '.footer-brand',
+    '.stats-strip .stats-grid > div',
+    '.social-links',
+    '.locations-list',
+  ].join(',');
+
+  // Sets that should stagger (multiple siblings inside a grid/flex parent)
+  const STAGGER_PARENTS = [
+    '.features-grid',
+    '.photo-feature-grid',
+    '.apt-grid',
+    '.prev-developed-grid',
+    '.new-homes-features',
+    '.floor-plans',
+    '.stats-grid',
+    '.social-links',
+    '.locations-list',
+  ];
+
+  // Mark elements for reveal
+  document.querySelectorAll(REVEAL_SELECTORS).forEach(function (el) {
+    // Skip elements already in the hero (they animate via CSS keyframes)
+    if (el.closest('.hero') || el.closest('.page-hero')) return;
+    el.classList.add('reveal');
+  });
+
+  // Apply stagger delays to siblings inside stagger parent containers
+  STAGGER_PARENTS.forEach(function (parentSel) {
+    document.querySelectorAll(parentSel).forEach(function (parent) {
+      const children = parent.querySelectorAll('.reveal');
+      children.forEach(function (child, i) {
+        const delayClass = 'd' + Math.min(i + 1, 6);
+        child.classList.add(delayClass);
+      });
+    });
+  });
+
   const observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
         observer.unobserve(entry.target);
       }
     });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
   });
-  lazyImages.forEach(function (img) { observer.observe(img); });
-}
+
+  document.querySelectorAll('.reveal').forEach(function (el) {
+    observer.observe(el);
+  });
+})();
+
+/* ---------- Hero parallax ---------- */
+(function () {
+  const heroBgs = document.querySelectorAll('.hero-bg');
+  if (!heroBgs.length) return;
+
+  // Respect reduced-motion preference
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return;
+
+  let ticking = false;
+
+  function updateParallax() {
+    const scrollY = window.scrollY;
+    heroBgs.forEach(function (bg) {
+      const hero = bg.parentElement;
+      const heroBottom = hero.offsetTop + hero.offsetHeight;
+      if (scrollY > heroBottom) return; // already past
+      const offset = scrollY * 0.38;
+      bg.style.transform = 'translateY(' + offset + 'px)';
+    });
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+
+/* ---------- Stats count-up ---------- */
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Parse the display value — handles "37+", "200+", "#1", "Monroe", "3", etc.
+  function parseTarget(text) {
+    const num = parseFloat(text.replace(/[^0-9.]/g, ''));
+    return isNaN(num) ? null : num;
+  }
+
+  function easeOutQuart(t) {
+    return 1 - Math.pow(1 - t, 4);
+  }
+
+  function animateCount(el) {
+    const original = el.textContent.trim();
+    const target   = parseTarget(original);
+    if (target === null) return; // non-numeric (e.g. "Monroe", "#1")
+
+    const suffix   = original.replace(/^[\d.]+/, ''); // "+", "/mo", etc.
+    const prefix   = original.match(/^[^0-9]*/)[0];   // "#", "$", etc.
+    const isFloat  = original.includes('.');
+    const duration = 1600;
+    const start    = performance.now();
+
+    function step(now) {
+      const elapsed  = Math.min(now - start, duration);
+      const progress = easeOutQuart(elapsed / duration);
+      const current  = target * progress;
+      el.textContent = prefix + (isFloat ? current.toFixed(1) : Math.round(current)) + suffix;
+      if (elapsed < duration) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = original; // restore exact original
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  if (prefersReduced) return;
+
+  const countObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        animateCount(entry.target);
+        countObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.stat-num').forEach(function (el) {
+    countObserver.observe(el);
+  });
+})();
