@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Realtor Registration | Empire Real Estate</title>
+  <meta name="description" content="Licensed real estate brokers — register your clients with Empire Real Estate &amp; Development to qualify for MLS compensation. Pocono Mountains, PA.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://www.empireunlimited.com/realtors.html">
+  <meta property="og:title"       content="Realtor Registration | Empire Real Estate">
+  <meta property="og:description" content="Register your clients with Empire Real Estate &amp; Development. Compensation details available in the Pocono Mountains MLS.">
+  <meta property="og:image"       content="https://www.empireunlimited.com/images/realtors/01-hero-realtors.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon"             href="favicon.ico" sizes="any">
+  <link rel="icon"             href="images/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="icon"             href="images/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== INFO BANNER ===== -->
+<div class="info-banner">
+  <p>Now Leasing — <strong>The Pinnacle at Swiftwater</strong>, brand new luxury apartments. <a href="apartments.html#pinnacle">View Availability &rarr;</a></p>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="header-logo" aria-label="Empire Real Estate — Home">
+      <img src="images/brand/02-logo-rgb.png" alt="Empire Real Estate &amp; Development">
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="header-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="apartments.html">Apartments</a>
+      <a href="new-homes.html">New Homes</a>
+      <a href="building-lots.html">Building Lots</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="realtors.html">Realtors</a>
+    </nav>
+    <div class="header-ctas">
+      <span class="header-phone"><a href="tel:5704240504">570.424.0504</a></span>
+      <a href="https://empirerealestate.appfolio.com/connect/users/sign_in" class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">Pay My Rent</a>
+      <a href="https://empirerealestate.appfolio.com/listings/e20c38e4-67cb-4329-a742-0ed7de49cdbc/apply?source=Website" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Apply Now</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" style="min-height:50vh;">
+  <div class="hero-bg" style="background-image: url('images/realtors/01-hero-realtors.jpg');"></div>
+  <div class="container hero-inner" style="display:flex;align-items:center;min-height:50vh;">
+    <div class="hero-content">
+      <span class="hero-eyebrow">Licensed Real Estate Brokers</span>
+      <h1>Register Your Clients</h1>
+      <p class="hero-sub">Maula Real Estate Inc. d/b/a Empire Real Estate and Development is happy to cooperate with licensed real estate brokers. Compensation details available in the Pocono Mountains MLS.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MAIN ===== -->
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 440px;gap:4rem;align-items:start;">
+
+      <!-- Registration Form -->
+      <div>
+        <h2 style="font-size:1.5rem;margin-bottom:.5rem;">Client Registration Form</h2>
+        <div class="gold-rule"></div>
+
+        <div class="realtor-info">
+          <p><strong style="color:var(--white);">Important:</strong> Clients must be registered prior to application with Empire Real Estate &amp; Development to qualify for compensation. Please complete the form below with your client's information before they apply.</p>
+        </div>
+
+        <form action="https://formspree.io/f/YOUR_REALTOR_FORM_ID" method="POST" data-formspree>
+
+          <h3 style="font-size:1.05rem;margin-bottom:1rem;color:var(--text-muted);font-family:var(--font-sans);text-transform:uppercase;letter-spacing:.06em;font-size:.8rem;">Realtor Information</h3>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="r-name">Realtor Name *</label>
+              <input type="text" id="r-name" name="realtor_name" class="form-control" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+              <label for="r-brokerage">Brokerage *</label>
+              <input type="text" id="r-brokerage" name="brokerage" class="form-control" placeholder="Brokerage name" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="r-email">Your Email *</label>
+              <input type="email" id="r-email" name="realtor_email" class="form-control" placeholder="you@brokerage.com" required>
+            </div>
+            <div class="form-group">
+              <label for="r-phone">Your Phone</label>
+              <input type="tel" id="r-phone" name="realtor_phone" class="form-control" placeholder="570.555.5555">
+            </div>
+          </div>
+
+          <hr style="border:none;border-top:1px solid var(--gray);margin:1.5rem 0;">
+          <h3 style="font-size:.8rem;margin-bottom:1rem;color:var(--text-muted);font-family:var(--font-sans);text-transform:uppercase;letter-spacing:.06em;">Client Information</h3>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="c-name">Client Name *</label>
+              <input type="text" id="c-name" name="client_name" class="form-control" placeholder="Client's full name" required>
+            </div>
+            <div class="form-group">
+              <label for="c-phone">Client Phone</label>
+              <input type="tel" id="c-phone" name="client_phone" class="form-control" placeholder="Client's phone">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="c-email">Client Email *</label>
+            <input type="email" id="c-email" name="client_email" class="form-control" placeholder="Client's email address" required>
+          </div>
+          <div class="form-group">
+            <label for="c-interest">Property Interest</label>
+            <select id="c-interest" name="property_interest" class="form-control">
+              <option value="">-- Select property of interest --</option>
+              <option value="The Pinnacle at Swiftwater">The Pinnacle at Swiftwater (New Construction)</option>
+              <option value="Swiftwater Apartments">Swiftwater Apartments</option>
+              <option value="Orchard Street Apartments">Orchard Street Apartments</option>
+              <option value="Mt. Nebo Road Apartments">Mt. Nebo Road Apartments</option>
+              <option value="New Home Construction">New Home Construction</option>
+              <option value="Castle Hill Manor (Building Lot)">Castle Hill Manor (Building Lot)</option>
+              <option value="Michael's Creek at Woodale (Building Lot)">Michael's Creek at Woodale (Building Lot)</option>
+              <option value="Colts Ridge at Meadowbrook (Building Lot)">Colts Ridge at Meadowbrook (Building Lot)</option>
+              <option value="Multiple / Undecided">Multiple / Undecided</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="r-message">Additional Notes</label>
+            <textarea id="r-message" name="message" class="form-control" placeholder="Any additional details about your client, timeline, specific requirements..." rows="4"></textarea>
+          </div>
+
+          <input type="hidden" name="_subject" value="Realtor Client Registration — Empire Real Estate">
+
+          <div class="form-message" style="font-size:.875rem;margin-bottom:.75rem;"></div>
+          <button type="submit" class="btn btn-primary" style="padding:.875rem 2.5rem;">Register Client</button>
+        </form>
+      </div>
+
+      <!-- Sidebar -->
+      <div>
+        <div style="background:var(--gray-light);border-radius:10px;padding:2rem;border:1px solid var(--gray);position:sticky;top:100px;">
+          <h3 style="font-size:1.1rem;margin-bottom:1rem;">Cooperating Broker Program</h3>
+          <p style="font-size:.9rem;color:var(--text-muted);">Empire Real Estate &amp; Development welcomes cooperation with licensed Pennsylvania real estate brokers.</p>
+
+          <ul style="margin-top:1.25rem;display:flex;flex-direction:column;gap:.75rem;">
+            <li style="display:flex;align-items:flex-start;gap:.6rem;font-size:.875rem;">
+              <span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>
+              Compensation details available in Pocono Mountains MLS
+            </li>
+            <li style="display:flex;align-items:flex-start;gap:.6rem;font-size:.875rem;">
+              <span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>
+              Client must be registered <em>before</em> submitting application
+            </li>
+            <li style="display:flex;align-items:flex-start;gap:.6rem;font-size:.875rem;">
+              <span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>
+              Register clients for any Empire property — apartments, new homes, or building lots
+            </li>
+            <li style="display:flex;align-items:flex-start;gap:.6rem;font-size:.875rem;">
+              <span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>
+              Quick response from our team upon receipt of registration
+            </li>
+          </ul>
+
+          <hr style="border:none;border-top:1px solid var(--gray);margin:1.5rem 0;">
+
+          <h3 style="font-size:1rem;margin-bottom:.75rem;">Questions?</h3>
+          <div style="display:flex;flex-direction:column;gap:.5rem;">
+            <div style="display:flex;align-items:center;gap:.6rem;font-size:.875rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.3 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:5704240504" style="color:var(--navy);font-weight:500;">570.424.0504</a>
+            </div>
+            <div style="display:flex;align-items:center;gap:.6rem;font-size:.875rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.3 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:5708079371" style="color:var(--navy);font-weight:500;">Anthony Maula — 570.807.9371</a>
+            </div>
+          </div>
+
+          <div style="margin-top:1.5rem;">
+            <a href="apartments.html" class="btn btn-navy btn-sm" style="width:100%;text-align:center;display:block;margin-bottom:.5rem;">View Available Apartments</a>
+            <a href="building-lots.html" class="btn btn-outline-navy btn-sm" style="width:100%;text-align:center;display:block;">View Building Lots</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <a href="index.html">
+            <img src="images/brand/02-logo-rgb.png" alt="Empire Real Estate &amp; Development">
+          </a>
+        </div>
+        <p>The Pocono's Premier Luxury Home Builder &amp; Apartment Manager Since 1987. Serving Stroudsburg, Swiftwater, East Stroudsburg, and the entire Pocono Mountains region.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/empireapartments" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/empireapartments" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/empire-real-estate-and-development/about/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="apartments.html">Apartments</a></li>
+          <li><a href="new-homes.html">New Homes</a></li>
+          <li><a href="building-lots.html">Building Lots</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="realtors.html">Realtors</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Tenant Services</h4>
+        <ul>
+          <li><a href="https://empirerealestate.appfolio.com/connect/users/sign_in" target="_blank" rel="noopener noreferrer">Pay My Rent</a></li>
+          <li><a href="https://empirerealestate.appfolio.com/listings/e20c38e4-67cb-4329-a742-0ed7de49cdbc/apply?source=Website" target="_blank" rel="noopener noreferrer">Apply for Apartment</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:5704240504">570.424.0504</a></li>
+          <li><a href="tel:5708079371">Anthony: 570.807.9371</a></li>
+          <li style="color:rgba(255,255,255,.5);font-size:.875rem;padding:.25rem 0;">117 Pipher Lane, Suite 100<br>Empire Plaza<br>Stroudsburg, PA</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2008&ndash;2026 by Maula Real Estate, Inc. d/b/a Empire Real Estate &amp; Development. All rights reserved.</p>
+      <div class="equal-housing">
+        <img src="images/brand/03-equal-housing-logo.png" alt="Equal Housing Opportunity">
+        <span>Equal Housing Opportunity</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
