@@ -178,7 +178,6 @@ p:last-child { margin-bottom: 0; }
   height: 80px;
   width: auto;
   max-width: 260px;
-  filter: brightness(0) invert(1);
   transition: opacity var(--transition);
 }
 .header-logo:hover img { opacity: .85; }
@@ -930,7 +929,6 @@ select.form-control { background-image: url("data:image/svg+xml,%3Csvg xmlns='ht
   height: 52px;
   width: auto;
   margin-bottom: 1rem;
-  filter: brightness(0) invert(1);
 }
 
 .footer-brand p { font-size: .88rem; line-height: 1.7; margin-bottom: .75rem; }
@@ -1239,93 +1237,63 @@ select.form-control { background-image: url("data:image/svg+xml,%3Csvg xmlns='ht
 .hero { overflow: hidden; }
 
 /* ---------- Photo feature grid ---------- */
-.photo-feature-grid {
+.apt-photo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 1.5rem;
   margin-top: 2.5rem;
 }
-@media (max-width: 860px) {
-  .photo-feature-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 520px) {
-  .photo-feature-grid { grid-template-columns: 1fr; }
+
+.apt-photo-card {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
 }
 
-.photo-feature-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-  aspect-ratio: 4/3;
-  cursor: default;
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow .35s ease, transform .35s cubic-bezier(.22,.61,.36,1);
-}
-.photo-feature-card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-4px) scale(1.01);
-}
-.photo-feature-card img {
+.apt-photo-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform .6s cubic-bezier(.22,.61,.36,1);
+  transition: transform 0.3s ease;
 }
-.photo-feature-card:hover img {
-  transform: scale(1.08);
+
+.apt-photo-card:hover img {
+  transform: scale(1.05);
 }
-.photo-feature-label {
+
+.apt-photo-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(10, 18, 40, .82) 0%,
-    rgba(10, 18, 40, .3)  50%,
-    transparent 100%
-  );
-  display: flex;
-  align-items: flex-end;
-  padding: 1.1rem 1.2rem;
+  background: linear-gradient(transparent 40%, rgba(0, 0, 0, 0.75));
   pointer-events: none;
-  transition: background .35s ease;
 }
-.photo-feature-card:hover .photo-feature-label {
-  background: linear-gradient(
-    to top,
-    rgba(10, 18, 40, .9) 0%,
-    rgba(10, 18, 40, .4) 55%,
-    transparent 100%
-  );
+
+.apt-photo-card:hover .apt-photo-overlay {
+  background: linear-gradient(transparent 30%, rgba(0, 0, 0, 0.85));
 }
-.photo-feature-label span {
-  color: var(--white);
-  font-family: var(--font-serif);
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.25;
-  text-shadow: 0 1px 4px rgba(0,0,0,.5);
-  transform: translateY(4px);
-  transition: transform .35s ease;
-}
-.photo-feature-card:hover .photo-feature-label span {
-  transform: translateY(0);
-}
-/* Gold accent line that appears on hover */
-.photo-feature-card::after {
-  content: '';
+
+.apt-photo-label {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--gold);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .4s cubic-bezier(.22,.61,.36,1);
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  color: #fff;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.3;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
 }
-.photo-feature-card:hover::after {
-  transform: scaleX(1);
+
+@media (max-width: 768px) {
+  .apt-photo-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .apt-photo-grid { grid-template-columns: 1fr; }
 }
 
 /* ---------- Count-up numbers ---------- */
