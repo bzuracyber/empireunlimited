@@ -239,6 +239,9 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* Mobile nav */
+/* Mobile CTA group inside hamburger menu — hidden on desktop */
+.nav-mobile-ctas { display: none; }
+
 @media (max-width: 900px) {
   .header-logo img { height: 64px; max-width: 200px; }
   .nav-toggle { display: block; }
@@ -260,14 +263,29 @@ p:last-child { margin-bottom: 0; }
 
   .header-phone { display: none; }
 
-  .header-ctas .btn { font-size: .75rem; padding: .55rem 1rem; }
+  /* Hide desktop CTA buttons — they live in the hamburger on mobile */
+  .header-ctas { display: none; }
+
+  /* CTA buttons shown inside the open hamburger menu */
+  .nav-mobile-ctas {
+    display: flex;
+    gap: .75rem;
+    padding: .75rem 1rem .25rem;
+    margin-top: .25rem;
+    border-top: 1px solid rgba(255,255,255,.15);
+    flex-wrap: wrap;
+  }
+  .nav-mobile-ctas .btn {
+    flex: 1;
+    text-align: center;
+    font-size: .85rem;
+    padding: .65rem 1rem;
+    min-width: 120px;
+  }
 }
 
 @media (max-width: 480px) {
   .header-logo img { height: 48px; max-width: 150px; }
-  .header-ctas { gap: .35rem; }
-  /* Hide secondary CTA so row doesn't overflow on narrow screens */
-  .header-ctas .btn-outline { display: none; }
 }
 
 /* ---------- Hero Sections ---------- */
