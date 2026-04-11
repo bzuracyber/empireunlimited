@@ -40,6 +40,7 @@ body {
   background: var(--white);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 img { max-width: 100%; height: auto; display: block; }
@@ -263,8 +264,10 @@ p:last-child { margin-bottom: 0; }
 }
 
 @media (max-width: 480px) {
-  .header-logo img { height: 56px; max-width: 170px; }
-  .header-ctas { gap: .4rem; }
+  .header-logo img { height: 48px; max-width: 150px; }
+  .header-ctas { gap: .35rem; }
+  /* Hide secondary CTA so row doesn't overflow on narrow screens */
+  .header-ctas .btn-outline { display: none; }
 }
 
 /* ---------- Hero Sections ---------- */
@@ -1252,7 +1255,11 @@ select.form-control { background-image: url("data:image/svg+xml,%3Csvg xmlns='ht
   box-shadow: var(--shadow-sm);
 }
 
+/* Use absolute positioning so height is not dependent on
+   the grid item's computed block size — works in all browsers */
 .apt-photo-card img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
