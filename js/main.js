@@ -160,7 +160,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     '.section-subheading',
     '.gold-rule',
     '.feature-card',
-    '.apt-photo-card',
     '.apt-card',
     '.apt-card-featured',
     '.lot-card',
@@ -178,7 +177,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function (a) {
   // Sets that should stagger (multiple siblings inside a grid/flex parent)
   const STAGGER_PARENTS = [
     '.features-grid',
-    '.apt-photo-grid',
     '.apt-grid',
     '.prev-developed-grid',
     '.new-homes-features',
