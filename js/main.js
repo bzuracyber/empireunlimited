@@ -10,30 +10,33 @@
   const nav    = document.querySelector('.header-nav');
   if (!toggle || !nav) return;
 
-  toggle.addEventListener('click', function () {
-    const open = nav.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', open);
-    if (open) {
-      toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
-    } else {
-      toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
-    }
+  function openNav() {
+    nav.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.innerHTML = '<span style="pointer-events:none;font-size:1.1rem;line-height:1;">&#10005;</span>';
+  }
+
+  function closeNav() {
+    nav.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.innerHTML = '<span style="pointer-events:none;font-size:1.4rem;line-height:1;">&#9776;</span>';
+  }
+
+  closeNav();
+
+  toggle.addEventListener('click', function (e) {
+    e.stopPropagation();
+    nav.classList.contains('open') ? closeNav() : openNav();
   });
 
   document.addEventListener('click', function (e) {
-    if (!toggle.contains(e.target) && !nav.contains(e.target)) {
-      nav.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+    if (nav.classList.contains('open') && !toggle.contains(e.target) && !nav.contains(e.target)) {
+      closeNav();
     }
   });
 
   nav.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function () {
-      nav.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
-    });
+    a.addEventListener('click', closeNav);
   });
 })();
 
