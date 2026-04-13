@@ -13,21 +13,29 @@
   function openNav() {
     nav.classList.add('open');
     toggle.setAttribute('aria-expanded', 'true');
-    toggle.innerHTML = '<span style="pointer-events:none;font-size:1.1rem;line-height:1;">&#10005;</span>';
+    toggle.textContent = '✕';
   }
 
   function closeNav() {
     nav.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
-    toggle.innerHTML = '<span style="pointer-events:none;font-size:1.4rem;line-height:1;">&#9776;</span>';
+    toggle.textContent = '☰';
   }
 
-  closeNav();
-
-  toggle.addEventListener('click', function (e) {
+  function handleToggle(e) {
+    e.preventDefault();
     e.stopPropagation();
     nav.classList.contains('open') ? closeNav() : openNav();
-  });
+  }
+
+  toggle.addEventListener('click', handleToggle);
+  toggle.addEventListener('touchend', handleToggle, { passive: false });
+
+  document.addEventListener('touchend', function (e) {
+    if (nav.classList.contains('open') && !toggle.contains(e.target) && !nav.contains(e.target)) {
+      closeNav();
+    }
+  }, { passive: true });
 
   document.addEventListener('click', function (e) {
     if (nav.classList.contains('open') && !toggle.contains(e.target) && !nav.contains(e.target)) {
@@ -37,7 +45,10 @@
 
   nav.querySelectorAll('a').forEach(function (a) {
     a.addEventListener('click', closeNav);
+    a.addEventListener('touchend', closeNav, { passive: true });
   });
+
+  closeNav();
 })();
 
 /* ---------- Active Nav Link ---------- */

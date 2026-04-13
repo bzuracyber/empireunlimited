@@ -253,6 +253,7 @@ p:last-child { margin-bottom: 0; }
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
+  -webkit-user-select: none;
   position: relative;
   z-index: 1001;
 }
