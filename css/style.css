@@ -457,6 +457,75 @@ p:last-child { margin-bottom: 0; }
   color: var(--text-muted);
 }
 
+/* ---------- Why Choose Empire Cards ---------- */
+.why-empire-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.why-card {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(201,169,78,.2);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all var(--transition);
+}
+
+.why-card:hover {
+  background: rgba(255,255,255,.09);
+  border-color: rgba(201,169,78,.55);
+  transform: translateY(-3px);
+}
+
+.why-card-photo {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.why-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(.8) saturate(.9);
+  transition: filter var(--transition);
+}
+
+.why-card:hover .why-card-photo img {
+  filter: brightness(.95) saturate(1.1);
+}
+
+.why-card-body {
+  padding: 1rem 1rem .9rem;
+}
+
+.why-card-title {
+  font-family: var(--font-sans);
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--gold);
+  margin-bottom: .35rem;
+}
+
+.why-card-desc {
+  font-size: .8rem;
+  color: rgba(255,255,255,.6);
+  line-height: 1.55;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .why-empire-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .why-empire-grid { grid-template-columns: 1fr 1fr; gap: .75rem; }
+  .why-card-body { padding: .75rem; }
+}
+
 /* ---------- Locations ---------- */
 .locations-list {
   display: flex;
@@ -486,8 +555,10 @@ p:last-child { margin-bottom: 0; }
 .social-section h2 { margin-bottom: .5rem; }
 .social-links {
   display: flex;
-  gap: 1.5rem;
+  gap: .75rem;
   justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 1rem;
   margin-top: 1.5rem;
 }
 .social-links a {
@@ -508,6 +579,25 @@ p:last-child { margin-bottom: 0; }
   transform: translateY(-2px);
 }
 .social-links svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+@media (max-width: 600px) {
+  .social-links {
+    gap: .5rem;
+    padding: 0 .5rem;
+  }
+  .social-links a {
+    font-size: .78rem;
+    padding: .55rem .9rem;
+    gap: .35rem;
+  }
+  .social-links svg {
+    width: 15px;
+    height: 15px;
+  }
+  .social-section {
+    padding: 2.5rem 1rem;
+  }
+}
 
 /* ---------- Apartment Cards ---------- */
 .apt-grid {
