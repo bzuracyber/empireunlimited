@@ -39,7 +39,7 @@
     <a href="index.html" class="header-logo" aria-label="Empire Real Estate — Home">
       <img src="images/brand/02-logo-navbar.png" alt="Empire Real Estate &amp; Development">
     </a>
-    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
     <nav class="header-nav" aria-label="Main navigation">
       <a href="index.html">Home</a>
       <a href="apartments.html">Apartments</a>
@@ -553,5 +553,16 @@
 </footer>
 
 <script src="js/main.js"></script>
+
+<style>
+/* Mobile grid overrides for inline styles */
+@media (max-width: 480px) {
+  /* Parking/Internet 2-column grid to single column */
+  div[style*="display:grid"][style*="grid-template-columns:1fr 1fr"][style*="gap:1rem"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
+
 </body>
 </html>
